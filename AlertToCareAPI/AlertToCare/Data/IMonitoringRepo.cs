@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AlertToCare.Data
 {
-    interface IMonitoringRepo
+    public interface IMonitoringRepo
     {
-        public string CheckVitals(string Id);
+        public Vitals CheckVitals(string Id);
         public IEnumerable<Vitals> GetAllVitals();
     }
 }

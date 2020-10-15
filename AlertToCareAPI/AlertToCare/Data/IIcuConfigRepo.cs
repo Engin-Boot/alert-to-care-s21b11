@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AlertToCare.Data
 {
-    interface IIcuConfigRepo
+    public interface IIcuConfigRepo
     {
         void AddNewIcu(Icu icu);
         void RemoveIcu(string id);

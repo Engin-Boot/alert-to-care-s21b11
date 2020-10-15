@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AlertToCare.Data
 {
-    interface IPatientRepo
+    public interface IPatientRepo
     {
         void AddNewPatient(Patient patient);
         void RemovePatient(string id);
