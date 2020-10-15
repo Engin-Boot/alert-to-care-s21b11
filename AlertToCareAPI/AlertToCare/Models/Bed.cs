@@ -7,8 +7,8 @@ namespace AlertToCare.Models
 {
     public class Bed
     {
-        public string BedId { get; set; }
-        public string IcuId { get; set; }
+        public int BedId { get; set; }
+        public int IcuId { get; set; }
         public bool CurrentStatus { get; set; }
     }
 }

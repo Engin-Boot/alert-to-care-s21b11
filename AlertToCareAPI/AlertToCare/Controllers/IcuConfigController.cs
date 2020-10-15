@@ -25,5 +25,20 @@ namespace AlertToCare.Controllers
             var _ICUs = _repo.GetAllIcus();
             return Ok(_ICUs);
         }
+
+        [HttpPost]
+        // POST api/<ConfigurationController>
+        public string AddIcu([FromBody] Models.Icu value)
+        {
+            var res = _repo.AddNewIcu(value);
+            return "New Icu Added :" + res.ToString();
+        }
+
+        [HttpPost]
+        public string RemovingIcu([FromBody] Models.Icu value, string id)
+        {
+            var res = _repo.RemoveIcu(value, id);
+            return "Specified ICU removed successfully"+ res.ToString(); 
+        }
     }
 }

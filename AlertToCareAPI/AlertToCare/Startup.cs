@@ -27,9 +27,14 @@ namespace AlertToCare
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IIcuConfigRepo, MockIcuRepo>();
-            services.AddScoped<IMonitoringRepo, MockVitalsRepo>();
-            services.AddScoped<IPatientRepo, MockPatientRepo>();
+            //services.AddScoped<IIcuConfigRepo, MockIcuRepo>();
+            //services.AddScoped<IMonitoringRepo, MockVitalsRepo>();
+            //services.AddScoped<IPatientRepo, MockPatientRepo>();
+
+            services.AddSingleton<IPatientRepo, PatientDetailsImpl>();
+            services.AddSingleton<IIcuConfigRepo, IcuConfigImpl>();
+            services.AddSingleton<IMonitoringRepo, MonitoringVitalsImpl>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
