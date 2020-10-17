@@ -9,7 +9,10 @@ jobs:
  
     runs-on: windows-latest
  
-    steps:
+   env:
+    Solution_Name: AlerToCareAPI.sln
+   
+   Steps:
     - uses: actions/checkout@v1
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
