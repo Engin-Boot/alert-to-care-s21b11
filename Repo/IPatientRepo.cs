@@ -8,10 +8,12 @@ namespace AlertToCare.Data
 {
     public interface IPatientRepo
     {
-        public bool AddNewPatient(Patient patient);
-        public bool RemovePatient(int PatientId);
-        public void UpdatePatient(int id, Patient patient);
-        public bool BedStatus(string id);
+        bool SaveChanges();
+
+        Patient GetPatientById(string id);
+        public void AddNewPatient(Patient patient);
+        public void RemovePatient(Patient patient);
+        public void UpdatePatient(Patient patient);
         IEnumerable<Patient> GetDetailsOfAllPatients();
 
     }

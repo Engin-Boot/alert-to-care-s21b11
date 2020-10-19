@@ -8,9 +8,11 @@ namespace AlertToCare.Data
 {
     public interface IIcuConfigRepo
     {
-        public bool AddNewIcu(Icu icu);
-        public bool RemoveIcu(Icu icu, string id);
-        public bool UpdateIcu(string id, Icu icu);
-        public IEnumerable<Icu> GetAllIcus();
+        void AddNewIcu(Icu icu);
+        void RemoveIcu(Icu icu);
+        void UpdateIcu(Icu icu);
+        Icu GetIcuById(string id);
+        IEnumerable<Icu> GetAllIcus();
+        bool SaveChanges();
     }
 }
