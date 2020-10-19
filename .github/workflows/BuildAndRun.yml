@@ -9,7 +9,10 @@ jobs:
     runs-on: windows-latest
     
     env:
-      Solution_Name: AlerToCareAPI.sln
+<<<<<<< HEAD
+      Solution_Name: AlertToCareAPI.sln
+=======
+>>>>>>> a3133d05b796eb3db86c4f8548cb85e55a02bf84
         
     steps:
     - name: Checkout
