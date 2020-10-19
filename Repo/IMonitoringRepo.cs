@@ -8,7 +8,8 @@ namespace AlertToCare.Data
 {
     public interface IMonitoringRepo
     {
-        public string CheckVitals(Vital vital);
+        public bool CheckVitals(Vital vital);
+        Vital GetVitalsById(string id);
         public IEnumerable<Vital> GetAllVitals();
     }
 }

@@ -37,6 +37,7 @@ namespace AlerToCareAPI
             services.AddControllers();
             services.AddScoped<IIcuConfigRepo, IcuConfigrationRepository>();
             services.AddScoped<IPatientRepo, PatientRepository>();
+            services.AddScoped<IMonitoringRepo, MonitorinRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

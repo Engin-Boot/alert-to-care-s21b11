@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Schema;
+using AlertToCare.Data;
 using AlertToCareAPI.Database;
 using AlertToCareAPI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,19 +12,32 @@ namespace AlertToCareAPI.Controllers
     [Route("api/[Controller]")]
     public class PatientsMonitoringController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IMonitoringRepo _repository;
 
-        public PatientsMonitoringController(DataContext context)
+        public PatientsMonitoringController(IMonitoringRepo repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Vital>> GetVitals()
         {
-            var vitals = _context.VitalsInfo.ToList();
+            var vitals = _repository.GetAllVitals();
 
             return Ok(vitals);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<bool> CheckVitalsById(string id)
+        {
+            var vitalsModelFromRepo = _repository.GetVitalsById(id);
+            if (vitalsModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _repository.CheckVitals(vitalsModelFromRepo);
+
+            return Ok();
         }
     }
 }
