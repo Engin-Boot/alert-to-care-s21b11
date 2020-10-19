@@ -4,6 +4,7 @@ using AlertToCareAPI.Models;
 using SQLitePCL;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,6 +26,7 @@ namespace AlertToCareAPI.Repo
                 throw new ArgumentNullException(nameof(icu));
             }
             _context.IcusInfo.Add(icu);
+            _context.SaveChanges();
         }
 
       
@@ -42,8 +44,8 @@ namespace AlertToCareAPI.Repo
             }
             _context.IcusInfo.Remove(icu);
         }
-            
 
+        [ExcludeFromCodeCoverage]
         public void UpdateIcu(Icu icu)
         {
             //Phew ... Nothing to do here

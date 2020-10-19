@@ -4,6 +4,7 @@ using AlertToCareAPI.Models;
 using SQLitePCL;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,6 +26,7 @@ namespace AlertToCareAPI.Repo
                 throw new ArgumentNullException(nameof(patient));
             }
             _context.PatientsInfo.Add(patient);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Patient> GetDetailsOfAllPatients()
@@ -37,7 +39,9 @@ namespace AlertToCareAPI.Repo
         public Patient GetPatientById(string id)
         {
             return _context.PatientsInfo.Find(id);
+
         }
+
 
         public void RemovePatient(Patient patient)
         {
@@ -53,6 +57,7 @@ namespace AlertToCareAPI.Repo
             return (_context.SaveChanges() >= 0); //To save changes into the database
         }
 
+        [ExcludeFromCodeCoverage]
         public void UpdatePatient(Patient patient)
         {
             //Nothing to do here
