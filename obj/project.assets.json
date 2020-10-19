@@ -1155,11 +1155,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI.csproj",
+      "projectUniqueName": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj",
       "projectName": "AlertToCareAPI",
-      "projectPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI.csproj",
+      "projectPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj",
       "packagesPath": "C:\\Users\\320106688\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\obj\\",
+      "outputPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\320106688\\AppData\\Roaming\\NuGet\\NuGet.Config",
