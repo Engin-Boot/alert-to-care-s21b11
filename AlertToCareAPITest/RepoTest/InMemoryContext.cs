@@ -21,7 +21,7 @@ namespace AlertToCareAPITest.RepoTest
         {
             var Bed1 = new Bed
             {
-                Id = "B004",
+                Id = "B002",
                 IcuId = "ICU004",
                 IsOccupied = true
             };

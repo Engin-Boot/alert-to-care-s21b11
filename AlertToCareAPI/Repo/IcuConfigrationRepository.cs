@@ -41,8 +41,9 @@ namespace AlertToCareAPI.Repo
             {
                 throw new ArgumentNullException(nameof(icu));
             }
+            /*
             //If beds of the Icu are occupied throw an exception
-            var occupiedBeds = _context.BedsInfo.FromSqlRaw($"SELECT * FROM BedsInfo WHERE IcuId = {icu.Id} AND IsOccupid = 1").ToList();
+            var occupiedBeds = _context.PatientsInfo.FromSqlRaw($"SELECT * FROM PatientsInfo WHERE IcuId = {icu.Id}").ToList();
 
             if (occupiedBeds.Count() > 0)
             {
@@ -50,6 +51,7 @@ namespace AlertToCareAPI.Repo
             }
             //Remove the beds of the corresponding ICU from the bed table
             _context.BedsInfo.FromSqlRaw($"DELETE FROM BedsInfo WHERE IcuId = {icu.Id}");
+            */
 
             _context.IcusInfo.Remove(icu);
         }
