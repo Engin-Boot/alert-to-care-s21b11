@@ -1,6 +1,7 @@
 ﻿using AlertToCare.Data;
 using AlertToCareAPI.Database;
 using AlertToCareAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,9 @@ namespace AlertToCareAPI.Repo
             {
                 throw new ArgumentNullException(nameof(patient));
             }
+
+            //Make the bed occupied available then remove the patient
+            _context.BedsInfo.FromSqlRaw($"UPDATE BedsInfo SET IsOccupied = 0 WHERE Id = {patient.BedId}");
             _context.PatientsInfo.Remove(patient);
         }
 

@@ -4676,19 +4676,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\320103928\\.nuget\\packages\\": {}
+    "C:\\Users\\320106688\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj",
+      "projectUniqueName": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj",
       "projectName": "AlertToCareAPITest",
-      "projectPath": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj",
-      "packagesPath": "C:\\Users\\320103928\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPITest\\obj\\",
+      "projectPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj",
+      "packagesPath": "C:\\Users\\320106688\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPITest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\320103928\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\320106688\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4701,8 +4701,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj": {
-              "projectPath": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj"
+            "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj": {
+              "projectPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj"
             }
           }
         }
@@ -4756,9 +4756,6 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
-          "Microsoft.AspNetCore.App": {
-            "privateAssets": "none"
-          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
