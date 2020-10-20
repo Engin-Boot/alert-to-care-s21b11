@@ -3,10 +3,12 @@ using AlertToCareAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AlertToCareAPI.Database.Migrations
 {
     [DbContext(typeof(DataContext))]
+    [ExcludeFromCodeCoverage]
     partial class DataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

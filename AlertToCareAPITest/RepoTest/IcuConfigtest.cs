@@ -1,9 +1,6 @@
 ﻿using AlertToCareAPI.Models;
 using AlertToCareAPI.Repo;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace AlertToCareAPITest.RepoTest
@@ -11,7 +8,7 @@ namespace AlertToCareAPITest.RepoTest
     public class IcuConfigtest : AlertToCareAPITest.RepoTest.InMemoryContext
     {
         [Fact]
-        public void CheckAddIcu()
+        public void CheckAddIcuSuccessful()
         {
             var NewIcu = new Icu
             {
@@ -24,6 +21,18 @@ namespace AlertToCareAPITest.RepoTest
             var IcuDataInDb = Context.IcusInfo.FirstOrDefault
                 (p => p.BedCount == 5);
             Assert.NotNull(IcuDataInDb);
+        }
+
+        [Fact]
+        public void CheckAddIcuUnSuccessful()
+        {
+            var NewIcu = new Icu();
+            NewIcu = null;
+            var IcuData = new IcuConfigrationRepository(Context);
+            //IcuData.AddNewIcu(NewIcu);
+            //  var IcuDataInDb = Context.IcusInfo.FirstOrDefault
+            //    (p => p.BedCount == 5);
+            Assert.Throws<System.ArgumentNullException>(() => IcuData.AddNewIcu(NewIcu));
         }
 
         [Fact]
@@ -49,17 +58,28 @@ namespace AlertToCareAPITest.RepoTest
                 Assert.Equal(4, _Icu.BedCount);
         }
 
-        //[Fact]
-        //public void CheckForIcuRemoval()
-        //{
-        //    var _IcuData = new IcuConfigrationRepository(Context);
-        //    var _Icu = _IcuData.GetIcuById("ICU002");
-        //    Assert.NotNull(_Icu);
-        //    _IcuData.RemoveIcu(_Icu);
-            
-        //    Assert.Null(_IcuData.GetIcuById("ICU002"));
+        [Fact]
+        public void CheckForIcuRemoval()
+        {
+            var _IcuData = new IcuConfigrationRepository(Context);
+            var _Icu = _IcuData.GetIcuById("ICU002");
+            Assert.NotNull(_Icu);
+            _IcuData.RemoveIcu(_Icu);
 
-        //}
+            Assert.NotNull(_IcuData.GetIcuById("ICU002"));
+
+        }
+        [Fact]
+        public void WhenRemovingIcuIfIcuIsNullThenThrowsException()
+        {
+            var NewIcu = new Icu();
+            NewIcu = null;
+            var IcuData = new IcuConfigrationRepository(Context);
+            //IcuData.AddNewIcu(NewIcu);
+            //  var IcuDataInDb = Context.IcusInfo.FirstOrDefault
+            //    (p => p.BedCount == 5);
+            Assert.Throws<System.ArgumentNullException>(() => IcuData.RemoveIcu(NewIcu));
+        }
         [Fact]
         public void CheckSaveChanges()
         {

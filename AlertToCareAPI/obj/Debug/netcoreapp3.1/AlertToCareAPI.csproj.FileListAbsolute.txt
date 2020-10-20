@@ -108,7 +108,6 @@ C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\bin\Debug\netc
 C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\obj\Debug\netcoreapp3.1\AlertToCareAPI.csprojAssemblyReference.cache
 C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\obj\Debug\netcoreapp3.1\AlertToCareAPI.AssemblyInfoInputs.cache
 C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\obj\Debug\netcoreapp3.1\AlertToCareAPI.AssemblyInfo.cs
 C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\obj\Debug\netcoreapp3.1\AlertToCareAPI.csproj.CoreCompileInputs.cache
@@ -120,3 +119,4 @@ C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\obj\Debug\netc
 C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\obj\Debug\netcoreapp3.1\AlertToCareAPI.dll
 C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\obj\Debug\netcoreapp3.1\AlertToCareAPI.pdb
 C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\obj\Debug\netcoreapp3.1\AlertToCareAPI.genruntimeconfig.cache
+C:\Users\320103928\CaseStudy2\alert-to-care-s21b11\AlertToCareAPI\obj\Debug\netcoreapp3.1\AlertToCareAPI.csprojAssemblyReference.cache

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj": {}
+    "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj": {
+    "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj",
+        "projectUniqueName": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj",
         "projectName": "AlertToCareAPITest",
-        "projectPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj",
-        "packagesPath": "C:\\Users\\320106688\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPITest\\obj\\",
+        "projectPath": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPITest\\AlertToCareAPITest.csproj",
+        "packagesPath": "C:\\Users\\320103928\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPITest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\320106688\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\320103928\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj": {
-                "projectPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj"
+              "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj": {
+                "projectPath": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj"
               }
             }
           }
@@ -42,6 +42,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.TestHost": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
               "version": "[3.1.9, )"
@@ -49,6 +53,10 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.5.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.14.7, )"
             },
             "Npgsql": {
               "target": "Package",
@@ -90,17 +98,17 @@
         }
       }
     },
-    "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj": {
+    "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj",
+        "projectUniqueName": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj",
         "projectName": "AlertToCareAPI",
-        "projectPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj",
-        "packagesPath": "C:\\Users\\320106688\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\320106688\\source\\alert-to-care-s21b11\\AlertToCareAPI\\obj\\",
+        "projectPath": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj",
+        "packagesPath": "C:\\Users\\320103928\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\320106688\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\320103928\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

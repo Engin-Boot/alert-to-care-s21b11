@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
 using AlertToCare.Data;
-using AlertToCareAPI.Database;
 using AlertToCareAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 

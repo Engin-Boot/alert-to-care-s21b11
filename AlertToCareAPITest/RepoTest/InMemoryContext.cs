@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using AlertToCareAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using DataContext = AlertToCareAPI.Database.DataContext;
@@ -9,7 +8,7 @@ namespace AlertToCareAPITest.RepoTest
     public class InMemoryContext : IDisposable
     {
         protected readonly DataContext Context;
-        
+
         protected InMemoryContext()
         {
             var option = new DbContextOptionsBuilder<DbContext>().UseInMemoryDatabase(

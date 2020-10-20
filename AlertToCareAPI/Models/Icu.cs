@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace AlertToCareAPI.Models
 {
+    [ExcludeFromCodeCoverage]
     public class Icu
     {
         public string Id { get; set; }

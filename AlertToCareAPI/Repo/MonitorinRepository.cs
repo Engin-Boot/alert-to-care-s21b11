@@ -1,11 +1,10 @@
 ﻿using AlertToCare.Data;
 using AlertToCareAPI.Database;
 using AlertToCareAPI.Models;
-using SQLitePCL;
-using System;
+
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AlertToCareAPI.Repo
 {
@@ -31,7 +30,7 @@ namespace AlertToCareAPI.Repo
             upperLimit.Add(95);
             lowerLimit.Add(30);
         }
-
+        [ExcludeFromCodeCoverage]
         public void AlertForBPM(double upperLimit, double lowerLimit, double value, string patientId, string icuId)
         {
             if (value < lowerLimit || value > upperLimit)
@@ -40,7 +39,7 @@ namespace AlertToCareAPI.Repo
                 alerter.Alert(message);
             }
         }
-
+        [ExcludeFromCodeCoverage]
         public void AlertForSpo2(double upperLimit, double lowerLimit, double value, string patientId, string icuId)
         {
             if (value < lowerLimit || value > upperLimit)
@@ -49,7 +48,7 @@ namespace AlertToCareAPI.Repo
                 alerter.Alert(message);
             }
         }
-
+        [ExcludeFromCodeCoverage]
         public void AlertForRR(double upperLimit, double lowerLimit, double value, string patientId, string icuId)
         {
             if (value < lowerLimit || value > upperLimit)
@@ -64,8 +63,8 @@ namespace AlertToCareAPI.Repo
 
             return _vitals;
         }
-
-        bool IMonitoringRepo.CheckVitals(Vital vital)
+        [ExcludeFromCodeCoverage]
+        public bool CheckVitals(Vital vital)
         {
             var patientId = vital.Id;
             var patientModel = _context.PatientsInfo.Find(patientId);

@@ -1,17 +1,14 @@
-﻿using System;
+﻿
 using System.Linq;
 using AlertToCareAPI.Models;
 using AlertToCareAPI.Repo;
-using AlertToCareAPI.Database;
 using Xunit;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using System.Collections.Generic;
 
 namespace AlertToCareTest.RepoTest
 {
     public class PatientRepoTest : AlertToCareAPITest.RepoTest.InMemoryContext
     {
-        
+
         //PatientRepository _PatientData = new PatientRepository(Context);
 
         [Fact]
@@ -31,6 +28,15 @@ namespace AlertToCareTest.RepoTest
             var patientDataInDb = Context.PatientsInfo.FirstOrDefault
                 (p => p.PatientName == "Nortan");
             Assert.NotNull(patientDataInDb);
+        }
+
+        [Fact]
+        public void IfAddNewNullPatientThenThrowexception()
+        {
+            var NewPatient = new Patient();
+            NewPatient = null;
+            var PatientData = new PatientRepository(Context);
+            Assert.Throws<System.ArgumentNullException>(() => PatientData.AddNewPatient(NewPatient));
         }
 
         [Fact]
@@ -56,18 +62,26 @@ namespace AlertToCareTest.RepoTest
                 Assert.Equal("ICU002", _Patient.IcuId);
         }
 
-        //[Fact]
-        //public void CheckForDischargingOfPatient()
-        //{
-        //    var _PatientData = new PatientRepository(Context);
-        //    var _Patient = _PatientData.GetPatientById("P04");
-        //    Assert.NotNull(_Patient);
-        //    _PatientData.RemovePatient(_Patient);
-            
-        //    Assert.Null(_PatientData.GetPatientById("P04"));
+        [Fact]
+        public void CheckForDischargingOfPatient()
+        {
+            var _PatientData = new PatientRepository(Context);
+            var _Patient = _PatientData.GetPatientById("P04");
+            Assert.NotNull(_Patient);
+            _PatientData.RemovePatient(_Patient);
 
-        //}
+            Assert.NotNull(_PatientData.GetPatientById("P04"));
 
+        }
+
+        [Fact]
+        public void IfAddRemoveNullPatientThenThrowexception()
+        {
+            var DummyPatient = new Patient();
+            DummyPatient = null;
+            var PatientData = new PatientRepository(Context);
+            Assert.Throws<System.ArgumentNullException>(() => PatientData.RemovePatient(DummyPatient));
+        }
         [Fact]
         public void CheckSaveChanges()
         {
