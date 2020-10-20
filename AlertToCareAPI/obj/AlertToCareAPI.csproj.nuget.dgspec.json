@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj": {}
+    "C:\\Users\\320106688\\source\\repos\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj": {
+    "C:\\Users\\320106688\\source\\repos\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj",
+        "projectUniqueName": "C:\\Users\\320106688\\source\\repos\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj",
         "projectName": "AlertToCareAPI",
-        "projectPath": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj",
-        "packagesPath": "C:\\Users\\320103928\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\320103928\\CaseStudy2\\alert-to-care-s21b11\\AlertToCareAPI\\obj\\",
+        "projectPath": "C:\\Users\\320106688\\source\\repos\\alert-to-care-s21b11\\AlertToCareAPI\\AlertToCareAPI.csproj",
+        "packagesPath": "C:\\Users\\320106688\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\320106688\\source\\repos\\alert-to-care-s21b11\\AlertToCareAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\320103928\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\320106688\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
