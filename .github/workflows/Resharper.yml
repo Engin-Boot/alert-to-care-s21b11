@@ -13,6 +13,12 @@ jobs:
       
       - name: Install resharper
         run: dotnet tool install -g JetBrains.ReSharper.GlobalTools
+      
+      - name: Install EF
+        run: dotnet add AlertToCareAPI/AlertToCareAPI.csproj Microsoft.EntityFrameworkCore
+        
+      - name: Add xunit Package
+        run: dotnet add AlertToCareAPITest/AlertToCareAPITest.csproj package xunit
         
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
