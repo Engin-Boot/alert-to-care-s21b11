@@ -15,7 +15,7 @@ jobs:
         run: dotnet tool install -g JetBrains.ReSharper.GlobalTools
       
       - name: Install EF
-        run: dotnet add AlertToCareAPI/AlertToCareAPI.csproj Microsoft.EntityFrameworkCore
+        run: dotnet add AlertToCareAPI/AlertToCareAPI.csproj package Microsoft.EntityFrameworkCore
         
       - name: Add xunit Package
         run: dotnet add AlertToCareAPITest/AlertToCareAPITest.csproj package xunit
