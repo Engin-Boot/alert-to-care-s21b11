@@ -1,4 +1,4 @@
-﻿using AlertToCareAPI.ControllerTest;
+﻿/*using AlertToCareAPI.ControllerTest;
 using System;
 using System.Collections.Generic;
 using AlertToCareAPI.Models;
@@ -13,7 +13,7 @@ namespace AlertToCareAPITest.IntegrationTests
 {
     public class OccupancyTests
     {
-       /* private readonly TestClientProvider _test;
+        private readonly TestClientProvider _test;
         private static string url = "http://localhost:5000/api/IcuOccupancy";
         public OccupancyTests()
         {
@@ -103,6 +103,6 @@ namespace AlertToCareAPITest.IntegrationTests
             var response = await _test.Client.GetAsync(url+"/Patient/B001/ICU001");
             response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        }*/
+        }
     }
-}
+}*/
