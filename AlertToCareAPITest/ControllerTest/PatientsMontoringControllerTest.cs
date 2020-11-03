@@ -2,7 +2,6 @@
 using AlertToCareAPI.Controllers;
 using Xunit;
 using Microsoft.AspNetCore.Mvc;
-using AlertToCare.Data;
 using Moq;
 using AlertToCareAPITest.RepoTest;
 using AlertToCareAPI.Repo;
