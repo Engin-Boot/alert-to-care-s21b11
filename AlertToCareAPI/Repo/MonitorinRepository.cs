@@ -1,10 +1,8 @@
-﻿using AlertToCare.Data;
 using AlertToCareAPI.Database;
 using AlertToCareAPI.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+
 using System.Linq;
 
 namespace AlertToCareAPI.Repo
@@ -17,35 +15,34 @@ namespace AlertToCareAPI.Repo
             _context = context;
         }
 
-        public IEnumerable<Alert> GetAllActiveAlerts(string icuID)
+        public IEnumerable<Alert> GetAllActiveAlerts(string icuId)
         {
             var alertList = _context.AlertsInfo.ToList();
             try
             {
-                var result = alertList.FindAll(item => item.IsActive == 1 && item.IcuId == icuID);
+                var result = alertList.FindAll(item => item.IsActive == 1 && item.IcuId == icuId);
                 return result;
             }
             catch (Exception)
             {
-                var result = new List<Alert> { };
-                return result;
+                return new List<Alert> {};
+                 
             }
 
             
         }
 
-        public IEnumerable<Bed> GetAllUnOccupiedBeds(string icuID)
+        public IEnumerable<Bed> GetAllUnOccupiedBeds(string icuId)
         {
             var beds = _context.BedsInfo.ToList();
             try
             {
-                var result = beds.FindAll(item => item.IsOccupied && item.IcuId == icuID);
+                var result = beds.FindAll(item => item.IsOccupied && item.IcuId == icuId);
                 return result;
             }
             catch (Exception)
             {
-                var result = new List<Bed> { };
-                return result;
+                return new List<Bed> {};
             }
         }
 
@@ -55,14 +52,15 @@ namespace AlertToCareAPI.Repo
 
             var alertList = _context.AlertsInfo.ToList();
             var alert = alertList.First(item => item.Id == id);
-            if (alert.IsActive == 0)
-            {
-                alert.IsActive = 1;
-            }
-            else
-            {
-                alert.IsActive = 0;
-            }
+            var x = alert.IsActive == 0 ? alert.IsActive = 1 : alert.IsActive = 0;
+            //if (alert.IsActive == 0)
+            //{
+            //    alert.IsActive = 1;
+            //}
+            //else
+            //{
+            //    alert.IsActive = 0;
+            //}
 
             _context.Update(alert);
             _context.SaveChanges();
