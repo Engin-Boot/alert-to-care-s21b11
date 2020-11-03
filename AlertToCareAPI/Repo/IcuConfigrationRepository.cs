@@ -4,7 +4,7 @@ using AlertToCareAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Diagnostics.CodeAnalysis;
+
 using System.Linq;
 
 namespace AlertToCareAPI.Repo
