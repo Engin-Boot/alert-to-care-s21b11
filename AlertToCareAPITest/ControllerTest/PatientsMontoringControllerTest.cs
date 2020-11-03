@@ -2,7 +2,7 @@
 using AlertToCareAPI.Controllers;
 using Xunit;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
+
 using AlertToCareAPITest.RepoTest;
 using AlertToCareAPI.Repo;
 
@@ -10,18 +10,18 @@ namespace AlertToCareAPITest.ControllerTest
 {
    public class PatientsMontoringControllerTest : InMemoryContext
     {
-        private readonly IMonitoringRepo _monitoringRepo;
+         
         private readonly PatientsMonitoringController _patientsMonitoringController;
 
         public PatientsMontoringControllerTest()
         {
-            _monitoringRepo = new MonitorinRepository(Context);
+            IMonitoringRepo _monitoringRepo = new MonitorinRepository(Context);
             _patientsMonitoringController = new PatientsMonitoringController(_monitoringRepo);
         }
 
         [Theory]
         [InlineData("ICU001")]
-        public void TestGetAllAlertsWhenICUIDIsValid(string icuID)
+        public void TestGetAllAlertsWhenIcuidIsValid(string icuId)
         {
             var alertList = _patientsMonitoringController.GetAlerts(icuID);
             Assert.IsType<OkObjectResult>(alertList);
@@ -29,7 +29,7 @@ namespace AlertToCareAPITest.ControllerTest
 
         [Theory]
         [InlineData("ABC456")]
-        public void TestGetAllAlertsWhenICUIDIsInvalid(string icuID)
+        public void TestGetAllAlertsWhenIcuidIsInvalid(string icuId)
         {
             var alertList = _patientsMonitoringController.GetAlerts(icuID);
             Assert.IsType<OkObjectResult>(alertList);
@@ -39,20 +39,20 @@ namespace AlertToCareAPITest.ControllerTest
         public void TestAlertStatusChange()
         {
             string alertId = "AL002";
-            var IsStatusChanged = _patientsMonitoringController.ChangeStatusOfAlert(alertId);
-            Assert.IsType<OkObjectResult>(IsStatusChanged);
+            var isStatusChanged = _patientsMonitoringController.ChangeStatusOfAlert(alertId);
+            Assert.IsType<OkObjectResult>(isStatusChanged);
         }
 
         [Fact]
-        public void TestDeleteAlertForPatientID()
+        public void TestDeleteAlertForPatientId()
         {
             string patID = "P02";
-            var IsPatientDeleted = _patientsMonitoringController.RemoveAlertOfDischargedPat(patID);
-            Assert.IsType<OkObjectResult>(IsPatientDeleted);
+            var isPatientDeleted = _patientsMonitoringController.RemoveAlertOfDischargedPat(patID);
+            Assert.IsType<OkObjectResult>(isPatientDeleted);
         }
 
         [Fact]
-        public void TestGetUnOccupiedBedsWhenValidICUID()
+        public void TestGetUnOccupiedBedsWhenValidIcuid()
         {
             string icuId = "ICU001";
             var bedsList = _patientsMonitoringController.GetUnoccupiedBeds(icuId);
