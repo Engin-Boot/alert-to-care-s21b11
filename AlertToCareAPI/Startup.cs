@@ -9,28 +9,34 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace AlerToCareAPI
+namespace AlertToCareAPI
 {
     [ExcludeFromCodeCoverage]
     public class Startup
     {
-        private readonly IConfiguration _config;
+       // public IConfiguration _config;
 
         public Startup(IConfiguration config)
         {
-            _config = config;
+            Config = config;
         }
 
-        
+        public IConfiguration Config { get; }
+       
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
+              options.UseSqlite(Config.GetConnectionString("DefaultConnection"));
+                //options.UseSqlite(_config.GetConnectionString("Data source= C:/Users/320107932/OneDrive - Philips/Bootcamp/Changes/AlertToCareAPI/AlertToCare.db"));
+                //options.UseSqlite("Data source= C: /Users/320107932/OneDrive - Philips/Merged/Alertocare/AlertToCareAPI/AlertToCare.db");
+            
             });
-            services.AddControllers();
-            services.AddScoped<IIcuConfigRepo, IcuConfigrationRepository>();
+            
+            services.AddScoped<IIcuConfigurationRepository, IcuConfigrationRepository>();
             services.AddScoped<IPatientRepo, PatientRepository>();
             services.AddScoped<IMonitoringRepo, MonitorinRepository>();
         }
@@ -42,12 +48,12 @@ namespace AlerToCareAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
+            
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

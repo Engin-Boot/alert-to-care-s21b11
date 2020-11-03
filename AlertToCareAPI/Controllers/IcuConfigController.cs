@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-using AlertToCare.Data;
-using AlertToCareAPI.Models;
+using AlertToCareAPI.Repo;
+using System.Data.SQLite;
 using Microsoft.AspNetCore.Mvc;
+using AlertToCareAPI.Utility;
 
 namespace AlertToCareAPI.Controllers
 {
@@ -9,68 +10,118 @@ namespace AlertToCareAPI.Controllers
     [Route("api/[Controller]")]
     public class IcuConfigController : ControllerBase
     {
-        private readonly IIcuConfigRepo _repository;
+        private readonly IIcuConfigurationRepository _repository;
 
-        public IcuConfigController(IIcuConfigRepo repository)
+        public IcuConfigController(IIcuConfigurationRepository repository)
         {
             _repository = repository;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Icu>> GetAllIcus()
+        public IEnumerable<Models.Icu> GetAllIcus()
         {
-            var ICUs = _repository.GetAllIcus();
+            var icUs = _repository.GetAllIcus();
 
-            return Ok(ICUs);
+            return icUs;
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Icu> GetBedStatus(string id)
+        public ActionResult GetSpecificIcu(string id)
         {
-            return _repository.GetIcuById(id);
+            //return _repository.GetIcuById(id);
+            Models.Icu icu = _repository.GetIcuById(id);
+            if (icu == null)
+            {
+                return NotFound($"ICU with ID {id} is not Present");
+            }
+            return Ok(icu);
         }
 
         [HttpPost]
-        public ActionResult AddIcu(Icu icu)
+        public ActionResult AddIcu(Models.Icu icu)
         {
-            _repository.AddNewIcu(icu);
-            _repository.SaveChanges();
-
-            return NoContent();
+            /* if(!_repository.CheckLayoutId(icu.LayoutId))
+             {
+                 return new ObjectResult("Not Registered Layout");
+             }*/
+            ValidationsIcu validations = new ValidationsIcu();
+            bool responseValidation = validations.ValidateIcu(icu);
+            if (responseValidation == false)
+            {
+                return BadRequest("Please Enter Valid Details");
+            }
+            try
+            {
+                _repository.AddNewIcu(icu);
+                _repository.SaveChanges();
+                return Ok("Icu Added Successfully");
+            }
+            catch (SQLiteException exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
 
         [HttpPut("{id}")]
 
-        public ActionResult UpdateIcu(string id, Icu icu)
+        public ActionResult UpdateIcu(string id, Models.Icu icu)
         {
-            var IcuModelFromRepository = _repository.GetIcuById(id);
-            if (IcuModelFromRepository == null)
+            var icuModelFromRepository = _repository.GetIcuById(id);
+            if (id != icu.Id)
+            {
+                return BadRequest("Enter Valid Details");
+            }
+            if (icuModelFromRepository == null)
             {
                 return NotFound();
             }
-            IcuModelFromRepository.BedCount = icu.BedCount;
-            IcuModelFromRepository.LayoutId = icu.LayoutId;
+            icuModelFromRepository.BedCount = icu.BedCount;
+            icuModelFromRepository.LayoutId = icu.LayoutId;
 
-            _repository.UpdateIcu(icu);
+            // _repository.UpdateIcu(icu);
             _repository.SaveChanges();
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
 
         public ActionResult DeleteIcu(string id)
         {
-            var IcuModelFromRepository = _repository.GetIcuById(id);
-            if (IcuModelFromRepository == null)
+            var icuModelFromRepository = _repository.GetIcuById(id);
+            if (icuModelFromRepository == null)
             {
                 return NotFound();
             }
-           
-            _repository.RemoveIcu(IcuModelFromRepository);
+
+            _repository.RemoveIcu(icuModelFromRepository);
             _repository.SaveChanges();
 
-            return NoContent(); 
+            return Ok();
         }
+        [HttpGet("Layouts")]
+        public IEnumerable<Models.Layout> GetAllLayouts()
+        {
+            var layouts = _repository.GetAllLayouts();
+
+            return layouts;
+        }
+
+        [HttpPost("{IcuId}/{BedCount}")]
+        public ActionResult AddBeds(string icuId, int bedCount)
+        {
+            bool response = _repository.ConfigureBeds(icuId, bedCount);
+            if (response)
+            {
+                _repository.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Invalid IcuId and BedCount Entered");
+            }
+
+        }
+
     }
 }

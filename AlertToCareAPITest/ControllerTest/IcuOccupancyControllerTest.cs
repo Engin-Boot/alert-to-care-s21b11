@@ -1,81 +1,147 @@
-﻿using AlertToCare.Data;
-using AlertToCareAPI.Controllers;
+﻿using AlertToCareAPI.Controllers;
 using AlertToCareAPI.Models;
+using AlertToCareAPI.Repo;
+using AlertToCareAPITest.RepoTest;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
 using Xunit;
 
 namespace AlertToCareAPITest.ControllerTest
 {
-    public class IcuOccupancyControllerTest
+    public class IcuOccupancyControllerTest : InMemoryContext
     {
-        private readonly Mock<IPatientRepo> _MockRepo;
 
-        private readonly IcuOccupancyController OccupancyController;
-
+        private readonly IPatientRepo _repository;
+        private readonly IcuOccupancyController _occupancyController;
         public IcuOccupancyControllerTest()
         {
-            _MockRepo = new Mock<IPatientRepo>();
-            OccupancyController = new IcuOccupancyController(_MockRepo.Object);
+
+            _repository = new PatientRepository(Context);
+            _occupancyController = new IcuOccupancyController(_repository);
         }
         [Fact]
         public void TestGetAllPatients()
         {
-            var _Patients = OccupancyController.GetAllPatients();
-            Assert.NotNull(_Patients);
-            //Assert.IsType<OkObjectResult>(_Patients);
-        }
-
-        [Theory]
-        [InlineData("P02")]
-        [InlineData("P05")]
-        public void TestGetPatientById(string Id)
-        {
-            var _Patients = OccupancyController.GetPatientById(Id);
-            Assert.NotNull(_Patients);
+            var patients = _occupancyController.GetAllPatients();
+            Assert.NotEmpty(patients);
         }
 
         [Fact]
-        public void TestAddNewPatient()
+        public void TestGetPatientWithValidId()
         {
-            var _Patient = new Patient
+            var patients = _occupancyController.GetPatientById("P01");
+            Assert.IsType<OkObjectResult>(patients);
+        }
+        [Fact]
+        public void TestGetPatientWithInValidId()
+        {
+            var patients = _occupancyController.GetPatientById("P010");
+            Assert.IsType<BadRequestObjectResult>(patients);
+        }
+        [Fact]
+        public void TestGetAllAvailableBeds()
+        {
+            var availableBeds = _occupancyController.GetAvailableBeds();
+            Assert.IsType<OkObjectResult>(availableBeds);
+
+        }
+        [Fact]
+        public void TestGetAllAvailableBedsForSpecificIcu()
+        {
+            var availableBeds = _occupancyController.GetAvailableBedsForIcu("ICU001");
+            Assert.IsType<OkObjectResult>(availableBeds);
+
+        }
+        [Fact]
+        public void TestWhenThereAreNoAvailableBeds()
+        {
+            var availableBeds = _occupancyController.GetAvailableBedsForIcu("ICU002");
+            Assert.IsType<BadRequestObjectResult>(availableBeds);
+
+
+        }
+        [Fact]
+        public void TestAddNewPatientWithValidDetails()
+        {
+            var patient = new Patient
             {
                 Id = "P06",
                 PatientName = "Sam",
                 Age = 25,
-                ContantNumber = "15678",
+                ContantNumber = "98765409765",
                 BedId = "B003",
-                IcuId = "ICU002"
+                IcuId = "ICU001"
             };
-            var NewPatient = OccupancyController.AddNewPatient(_Patient);
-            Assert.NotNull(NewPatient);
-            Assert.IsType<NoContentResult>(NewPatient);
-        }
+            var newPatient = _occupancyController.AddNewPatient(patient);
 
+            Assert.IsType<OkResult>(newPatient);
+        }
         [Fact]
-        //[InlineData("P06")]NotFount
-        public void TestUpdatePatient()
+        public void TestAddNewPatientWithSameId()
         {
-            var _Patient = new Patient
+            var patient = new Patient
+            {
+                Id = "P01",
+                PatientName = "Sam",
+                Age = 25,
+                ContantNumber = "98765409765",
+                BedId = "B003",
+                IcuId = "ICU001"
+            };
+            var newPatient = _occupancyController.AddNewPatient(patient);
+
+            Assert.IsType<BadRequestObjectResult>(newPatient);
+        }
+        [Fact]
+        public void TestAddNewPatientWithInvalidBedIdandIcuIdDetails()
+        {
+            var patient = new Patient
             {
                 Id = "P06",
                 PatientName = "Sam",
                 Age = 25,
-                ContantNumber = "15678",
-                BedId = "B003",
-                IcuId = "ICU002"
+                ContantNumber = "98765409765",
+                BedId = "B0034",
+                IcuId = "ICU001"
             };
-            var NewPatient = OccupancyController.UpdatePatient("P05", _Patient);
-            Assert.NotNull(NewPatient);
-            Assert.IsType<NotFoundResult>(NewPatient);
+            var newPatient = _occupancyController.AddNewPatient(patient);
+
+            Assert.IsType<BadRequestObjectResult>(newPatient);
         }
         [Fact]
-        //[InlineData("P06")]NotFount
-        public void RemovePatient()
+        public void TestAddNewPatientWithBedIdOccupied()
         {
-            var NewPatient = OccupancyController.RemovePatient("P01");
-            Assert.NotNull(NewPatient);
-            Assert.IsType<NotFoundResult>(NewPatient);
+            var patient = new Patient
+            {
+                Id = "P06",
+                PatientName = "Sam",
+                Age = 25,
+                ContantNumber = "98765409765",
+                BedId = "B001",
+                IcuId = "ICU001"
+            };
+            var newPatient = _occupancyController.AddNewPatient(patient);
+            Assert.IsType<BadRequestObjectResult>(newPatient);
+        }
+        [Fact]
+        public void TestRemovePatientWithValidDetails()
+        {
+
+            var newPatient = _occupancyController.RemovePatient("P01", "ICU001");
+            Assert.IsType<OkResult>(newPatient);
+        }
+        [Fact]
+        public void TestRemovePatientWithInValidId()
+        {
+
+            var newPatient = _occupancyController.RemovePatient("P0109", "ICU001");
+            Assert.IsType<NotFoundResult>(newPatient);
+        }
+        [Fact]
+        public void TestGetPatientInfo()
+        {
+            var patient = _occupancyController.GetPatientInfo("B001", "ICU001");
+            Assert.Equal("P01", patient.Id);
+
         }
     }
 }

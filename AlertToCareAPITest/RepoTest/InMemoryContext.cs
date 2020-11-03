@@ -19,43 +19,71 @@ namespace AlertToCareAPITest.RepoTest
         }
         private void InitializeDatabase(DataContext context)
         {
-            var Bed1 = new Bed
+            var layout1 = new Layout
             {
-                Id = "B002",
-                IcuId = "ICU004",
-                IsOccupied = true
+                LayoutId="L001",
+                LayoutName="Rectangular"
             };
-            context.Add(Bed1);
-
-            var Icu1 = new Icu
+            context.Add(layout1);
+            var icu1 = new Icu
+            {
+                Id = "ICU001",
+                BedCount = 12,
+                LayoutId = "L001"
+            };
+            context.Add(icu1);
+            var icu2 = new Icu
             {
                 Id = "ICU002",
-                BedCount = 4,
+                BedCount = 10,
                 LayoutId = "L002"
             };
-            context.Add(Icu1);
-
-            var _Patient = new Patient
+            context.Add(icu2);
+            var bed1 = new Bed
             {
-                Id = "P02",
+                Id = 1,
+                BedNo="B001",
+                IcuId = "ICU001",
+                IsOccupied = true
+            };
+            context.Add(bed1);
+            var bed2 = new Bed
+            {
+                Id = 2,
+                BedNo = "B002",
+                IcuId = "ICU001",
+                IsOccupied = true
+            };
+            context.Add(bed2);
+            var bed3 = new Bed
+            {
+                Id = 3,
+                BedNo = "B003",
+                IcuId = "ICU001",
+                IsOccupied = false
+            };
+            context.Add(bed3);
+            var patient1 = new Patient
+            {
+                Id = "P01",
                 PatientName = "Raj",
                 Age = 24,
-                IcuId = "ICU002",
-                BedId = "B002",
-                ContantNumber = "1234"
+                IcuId = "ICU001",
+                BedId = "B001",
+                ContantNumber = "9876543210"
             };
-            context.Add(_Patient);
+            context.Add(patient1);
 
-            var _Patient2 = new Patient
+            var patient2 = new Patient
             {
-                Id = "P04",
+                Id = "P02",
                 PatientName = "Sam",
                 Age = 24,
-                IcuId = "ICU003",
+                IcuId = "ICU001",
                 BedId = "B002",
-                ContantNumber = "1234"
+                ContantNumber = "9876510937"
             };
-            context.Add(_Patient2);
+            context.Add(patient2);
 
             var _Vitals = new Vital
             {
@@ -65,6 +93,17 @@ namespace AlertToCareAPITest.RepoTest
                 RespRate = 111
             };
             context.Add(_Vitals);
+
+            var _alerts = new Alert
+            {
+                Id = "AL002",
+                PatientId = "P02",
+                Message = "BPM is high",
+                BedId = "B002",
+                IcuId = "ICU001",
+                IsActive = 1
+            };
+            context.Add(_alerts);
             context.SaveChanges();
         }
         public void Dispose()
