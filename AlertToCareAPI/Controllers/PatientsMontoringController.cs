@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using AlertToCare.Data;
+
+using AlertToCareAPI.Repo;
 using AlertToCareAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,9 +19,9 @@ namespace AlertToCareAPI.Controllers
         }
 
         [HttpGet("{icuID}")]
-        public ActionResult GetAlerts(string icuID)
+        public ActionResult GetAlerts(string icuId)
         {
-            IEnumerable<Alert> alerts = _repository.GetAllActiveAlerts(icuID);
+            IEnumerable<Alert> alerts = _repository.GetAllActiveAlerts(icuId);
             if(alerts.Count()==0)
             {
                 return Ok(alerts);
@@ -33,21 +33,21 @@ namespace AlertToCareAPI.Controllers
         public ActionResult ChangeStatusOfAlert(string id)
         {
             
-            var IsStatusChanged = _repository.AlertChangeStatus(id);
-            return Ok(IsStatusChanged);
+            var isStatusChanged = _repository.AlertChangeStatus(id);
+            return Ok(isStatusChanged);
         }
 
         [HttpDelete("{id}")]
         public ActionResult RemoveAlertOfDischargedPat(string id)
         {
-            var IsAlertRemoved = _repository.RemoveAlertsOfPatient(id);
-            return Ok(IsAlertRemoved);
+            var isAlertRemoved = _repository.RemoveAlertsOfPatient(id);
+            return Ok(isAlertRemoved);
         }
 
         [HttpGet("Unoccbed/{icuID}")]
-        public ActionResult GetUnoccupiedBeds(string icuID)
+        public ActionResult GetUnoccupiedBeds(string icuId)
         {
-            var unoccBeds = _repository.GetAllUnOccupiedBeds(icuID);
+            var unoccBeds = _repository.GetAllUnOccupiedBeds(icuId);
             if(unoccBeds.Count()!=0)
             {
                 return Ok(unoccBeds);
