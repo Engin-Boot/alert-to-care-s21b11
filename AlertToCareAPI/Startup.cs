@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using AlertToCare.Data;
 using AlertToCareAPI.Database;
 using AlertToCareAPI.Repo;
 using Microsoft.AspNetCore.Builder;
