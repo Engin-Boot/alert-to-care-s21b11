@@ -123,12 +123,12 @@ namespace AlertToCareAPI.Repo
             ChangeStatus(result, false);
             _context.PatientsInfo.Remove(patient);
         }
-
+        //ReSharper disable all
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0); //To save changes into the database
         }
-
+        //ReSharper restore all
 
         /*  public void UpdatePatient(Patient newpatient,Patient oldpatient)
           {

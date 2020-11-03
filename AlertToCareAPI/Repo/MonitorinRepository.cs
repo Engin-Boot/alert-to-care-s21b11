@@ -79,9 +79,11 @@ namespace AlertToCareAPI.Repo
             return true;
         }
 
+        //ReSharper disable all
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0); //To save changes into the database
         }
+        //Resharper restore all
     }
 }

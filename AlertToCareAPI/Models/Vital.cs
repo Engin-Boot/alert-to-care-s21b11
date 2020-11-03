@@ -2,6 +2,7 @@
 
 namespace AlertToCareAPI.Models
 {
+    //ReSharper disable all
     [ExcludeFromCodeCoverage]
     public class Vital
     {
@@ -10,4 +11,5 @@ namespace AlertToCareAPI.Models
         public double Spo2 { get; set; }
         public double RespRate { get; set; }
     }
+    //ReSharper restore all
 }

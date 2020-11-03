@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 namespace AlertToCareAPI.Models
 {
+    //ReSharper disable all
     [ExcludeFromCodeCoverage]
     public class Patient
     {
@@ -11,4 +12,5 @@ namespace AlertToCareAPI.Models
         public string BedId { get; set; }
         public string ContantNumber { get; set; }
     }
+    //ReSharper restore all
 }

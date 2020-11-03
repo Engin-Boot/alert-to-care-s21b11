@@ -2,6 +2,8 @@
 namespace AlertToCareAPI.Models
 {
     [ExcludeFromCodeCoverage]
+    
+    //ReSharper disable all
     public class Bed
     {
         public int Id { get; set; }
@@ -9,4 +11,5 @@ namespace AlertToCareAPI.Models
         public string IcuId { get; set; }
         public bool IsOccupied { get; set; }
     }
+    //ReSharper restore all
 }

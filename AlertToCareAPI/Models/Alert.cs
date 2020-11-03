@@ -1,5 +1,6 @@
 namespace AlertToCareAPI.Models
 {
+    //ReSharper disable all
     public class Alert
     {
         public string Id { get; set; }
@@ -10,4 +11,5 @@ namespace AlertToCareAPI.Models
         public string IcuId { get; set; }
 
     }
+    //ReSharper restore all
 }
