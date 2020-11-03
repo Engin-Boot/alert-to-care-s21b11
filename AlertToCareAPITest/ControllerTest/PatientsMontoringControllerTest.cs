@@ -23,7 +23,7 @@ namespace AlertToCareAPITest.ControllerTest
         [InlineData("ICU001")]
         public void TestGetAllAlertsWhenIcuidIsValid(string icuId)
         {
-            var alertList = _patientsMonitoringController.GetAlerts(icuID);
+            var alertList = _patientsMonitoringController.GetAlerts(icuId);
             Assert.IsType<OkObjectResult>(alertList);
         }
 
@@ -31,7 +31,7 @@ namespace AlertToCareAPITest.ControllerTest
         [InlineData("ABC456")]
         public void TestGetAllAlertsWhenIcuidIsInvalid(string icuId)
         {
-            var alertList = _patientsMonitoringController.GetAlerts(icuID);
+            var alertList = _patientsMonitoringController.GetAlerts(icuId);
             Assert.IsType<OkObjectResult>(alertList);
         }
 
