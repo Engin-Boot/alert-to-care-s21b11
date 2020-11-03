@@ -1,7 +1,7 @@
 ﻿using AlertToCareAPI.Models;
 using System.Collections.Generic;
 
-namespace AlertToCare.Data
+namespace AlertToCareAPI.Repo
 {
 
     public interface IMonitoringRepo
