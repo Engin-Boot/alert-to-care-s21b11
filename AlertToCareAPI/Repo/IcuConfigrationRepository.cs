@@ -52,10 +52,11 @@ namespace AlertToCareAPI.Repo
 
             if (CheckIcuIdAndBedCountIsValid(icu, bedCount))
             {
-                Bed configurebeds;
+                
 
                 for (int i = 1; i <= bedCount; i++)
                 {
+                    Bed configurebeds;
                     configurebeds = new Bed();
                     configurebeds.BedNo = "B00" + i;
                     configurebeds.IcuId = icu;
