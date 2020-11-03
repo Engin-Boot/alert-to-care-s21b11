@@ -25,7 +25,7 @@ namespace AlertToCareAPI.Repo
             }
             catch (Exception)
             {
-                return new List<Alert> {};
+                return new List<Alert>();
                  
             }
 
@@ -42,7 +42,7 @@ namespace AlertToCareAPI.Repo
             }
             catch (Exception)
             {
-                return new List<Bed> {};
+                return new List<Bed>();
             }
         }
 
