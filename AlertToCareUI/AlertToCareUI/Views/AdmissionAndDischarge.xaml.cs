@@ -1,7 +1,8 @@
 ﻿using AlertToCareUI.Models;
+using AlertToCareUI.ServiceAccessPoint;
 using System;
-using System.Net.Http;
 using System.Runtime.Serialization.Json;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,18 +18,13 @@ namespace AlertToCareUI.Views
         {
             InitializeComponent();
         }
-        static string IcuNo;
+        static string _icuNo;
         public AdmissionAndDischarge(string icuid)
         {
-            IcuNo = icuid;
+            _icuNo = icuid;
         }
-        private static readonly HttpClient Client = new HttpClient();
-
-        /*  public string IcuNo
-          {
-              get;set;
-          }*/
-
+       // RequestHandler requestHandlerObj = new RequestHandler();
+        //await requestHandlerObj.DeleteAlertsOnDischarge(idDischarged);
         private void Admit(object sender, RoutedEventArgs e)
         {
             PatientAdmission();
@@ -43,20 +39,20 @@ namespace AlertToCareUI.Views
 
             var newPatient = new PatientModel()
             {
-                Id = id.Text,
-                PatientName = name.Text,
+                Id = Id.Text,
+                PatientName = Name.Text,
                 //Age = int.Parse(age.Text),
-                BedId = bedno.Text,
+                BedId = Bedno.Text,
                 //IcuId = icuid.Text,
-                IcuId = IcuNo,
-                ContantNumber = contact.Text
+                IcuId = _icuNo,
+                ContantNumber = Contact.Text
             };
 
             bool response = CheckValidityOfDetails(newPatient);
-            if (response == true)
+            if (response)
             {
 
-                newPatient.Age = int.Parse(age.Text);
+                newPatient.Age = int.Parse(Age.Text);
                 AddToDb(newPatient);
 
             }
@@ -70,23 +66,23 @@ namespace AlertToCareUI.Views
         private void AddToDb(PatientModel newPatient)
         {
 
-            System.Net.HttpWebRequest _httpReq =
+            System.Net.HttpWebRequest httpReq =
                  System.Net.WebRequest.CreateHttp("http://localhost:5000/api/icuoccupancy");
-            _httpReq.Method = "POST";
-            _httpReq.ContentType = "application/json";
+            httpReq.Method = "POST";
+            httpReq.ContentType = "application/json";
             DataContractJsonSerializer filterDataJsonSerializer = new DataContractJsonSerializer(typeof(PatientModel));
-            filterDataJsonSerializer.WriteObject(_httpReq.GetRequestStream(), newPatient);
+            filterDataJsonSerializer.WriteObject(httpReq.GetRequestStream(), newPatient);
             try
             {
-                System.Net.HttpWebResponse response = _httpReq.GetResponse() as System.Net.HttpWebResponse;
+                System.Net.HttpWebResponse response = httpReq.GetResponse() as System.Net.HttpWebResponse;
                 // MessageBox.Show($"{response.StatusCode}");
                 MessageBox.Show("Patient Registered Successfully");
-                id.Text = "";
-                name.Text = "";
-                age.Text = "";
-                bedno.Text = "";
+                Id.Text = "";
+                Name.Text = "";
+                Age.Text = "";
+                Bedno.Text = "";
                 //IcuId = icuid.Text,
-                contact.Text = "";
+                Contact.Text = "";
 
 
             }
@@ -128,7 +124,7 @@ namespace AlertToCareUI.Views
         {
             try
             {
-                int a = int.Parse(age.Text);
+                int.Parse(Age.Text);
                 return true;
             }
             catch (Exception)
@@ -139,16 +135,16 @@ namespace AlertToCareUI.Views
 
         }
 
-        private void Discharge(object sender, RoutedEventArgs e)
+        private async void Discharge(object sender, RoutedEventArgs e)
         {
-            dischargepatient();
+           await Dischargepatient();
         }
 
-        private void dischargepatient()
+        private  async Task Dischargepatient()
         {
-            if (CheckId(patientid.Text))
+            if (CheckId(Patientid.Text))
             {
-                RemovePatient(patientid.Text);
+             await RemovePatient(Patientid.Text);
             }
             else
             {
@@ -156,11 +152,11 @@ namespace AlertToCareUI.Views
             }
         }
 
-        private void RemovePatient(string IdDischarged)
+        private async Task RemovePatient(string idDischarged)
         {
-            string IcuId = IcuNo;
+            string icuId = _icuNo;
             System.Net.HttpWebRequest _httpReq =
-                System.Net.WebRequest.CreateHttp("http://localhost:5000/api/icuoccupancy/" + IdDischarged + "/" + IcuId);
+                System.Net.WebRequest.CreateHttp("http://localhost:5000/api/icuoccupancy/" + idDischarged + "/" + icuId);
             _httpReq.Method = "DELETE";
 
             try
@@ -168,13 +164,17 @@ namespace AlertToCareUI.Views
                 System.Net.HttpWebResponse response = _httpReq.GetResponse() as System.Net.HttpWebResponse;
                 //MessageBox.Show($"{response.StatusCode}");
                 MessageBox.Show("Patient Discharged Successfully");
-                patientid.Text = "";
+                Patientid.Text = "";
+                RequestHandler requestHandlerObj = new RequestHandler();
+                await requestHandlerObj.DeleteAlertsOnDischarge(idDischarged);
+
+
             }
             catch (Exception)
             {
                 //MessageBox.Show($"{exception.Message}");
                 MessageBox.Show("InValid Patient Id Entered");
-                patientid.Text = "";
+                Patientid.Text = "";
             }
         }
 

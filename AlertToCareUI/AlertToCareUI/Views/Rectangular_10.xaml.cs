@@ -20,20 +20,20 @@ namespace AlertToCareUI.Views
         {
             InitializeComponent();
         }
-        static string IcuNo;
-        public Rectangular_10(string IcuId)
+        static string _icuNo;
+        public Rectangular_10(string icuId)
         {
-            IcuNo = IcuId;
+            _icuNo = icuId;
         }
 
         private void PatientInfo(object sender, RoutedEventArgs e)
         {
             string b = (string)((Button)sender).Content;
-            string icu = IcuNo;
+            string icu = _icuNo;
 
-            HttpWebRequest _httpReq = WebRequest.CreateHttp("http://localhost:5000/api/IcuOccupancy/Patient/" + b + "/" + icu);
-            _httpReq.Method = "GET";
-            HttpWebResponse response = _httpReq.GetResponse() as HttpWebResponse;
+            HttpWebRequest httpReq = WebRequest.CreateHttp("http://localhost:5000/api/IcuOccupancy/Patient/" + b + "/" + icu);
+            httpReq.Method = "GET";
+            HttpWebResponse response = httpReq.GetResponse() as HttpWebResponse;
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 var stream = response.GetResponseStream();
